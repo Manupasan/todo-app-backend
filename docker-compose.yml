@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  backend:
+    build: .
+    depends_on:
+      - db
+    environment:
+     JWT_SECRET_KEY: CBV68lp8fSnzGmEALWuoiSwf9lORIgLgeZlZgpHS1Q4=
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: tododb
+      POSTGRES_USER: todo_user
+      POSTGRES_PASSWORD: todo_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
